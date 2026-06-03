@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الأول</title>
+    <title>مشروع الخرائط العالمي</title>
+    
+    <!-- روابط مكتبة Leaflet.js لتشغيل الخريطة (أونلاين بدون تحميل) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <style>
-        /* تصميم عصري مريح للعين (Dark Mode) */
+        /* تصميم عصري داكن يناسب المشاريع الاحترافية */
         body {
             background-color: #0f172a;
             color: #f8fafc;
@@ -13,7 +18,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
@@ -23,53 +28,84 @@
         .container {
             text-align: center;
             background-color: #1e293b;
-            padding: 40px;
+            padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            max-width: 500px;
+            max-width: 900px;
             width: 100%;
             border: 1px solid #334155;
+            margin-bottom: 20px;
         }
 
         h1 {
             color: #38bdf8;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
+            margin-top: 0;
             margin-bottom: 10px;
         }
 
         p {
             color: #94a3b8;
             font-size: 1.1rem;
-            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* تحديد حجم ومكان الخريطة */
+        #map {
+            height: 450px;
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid #38bdf8;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
         }
 
         .counter-box {
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 20px;
+            padding-top: 15px;
             border-top: 1px solid #334155;
+            width: 100%;
+            text-align: center;
         }
 
         .counter-title {
             font-size: 0.9rem;
             color: #64748b;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>أهلاً بك في موقعي الأول!</h1>
-        <p>هنا سأقوم ببناء موقع لربح المال، وتنزيل ملفات الألعاب، والتطبيقات الاحترافية.</p>
+        <h1>منصة الخرائط العالمية الخاصة بي</h1>
+        <p>موقع خرائط تفاعلي مجاني، جاهز للتطوير وإضافة المحلات والمواقع التجارية للربح منه.</p>
         
-        <div class="counter-box">
-            <div class="counter-title">عدد زيارات الموقع الكلية</div>
-            <div id="sfcy1p27r3b9z7g7beunwaz7g81n1be3kfx"></div>
-            <script type="text/javascript" src="https://counter10.optistats.ovh/private/counter.js?c=y1p27r3b9z7g7beunwaz7g81n1be3kfx&down=async" async></script>
-        </div>
+        <!-- هنا تظهر الخريطة -->
+        <div id="map"></div>
     </div>
+
+    <!-- قسم عداد الزوار التلقائي -->
+    <div class="counter-box">
+        <div class="counter-title">عدد زيارات المنصة الكلية</div>
+        <div id="sfcy1p27r3b9z7g7beunwaz7g81n1be3kfx"></div>
+        <script type="text/javascript" src="https://counter10.optistats.ovh/private/counter.js?c=y1p27r3b9z7g7beunwaz7g81n1be3kfx&down=async" async></script>
+    </div>
+
+    <script>
+        // 1. تشغيل الخريطة وتحديد الإحداثيات المركزية الافتراضية للبلد (القدس وفلسطين مثلاً)
+        // الأرقام [31.947, 35.227] هي خطوط الطول والعرض، ورقم 8 هو مستوى الزووم (Zoom)
+        var map = L.map('map').setView([31.947, 35.227], 8);
+
+        // 2. استدعاء أشكال الشوارع والخرائط المجانية من OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // 3. إضافة علامة (Marker) تجريبية على الخريطة
+        var marker = L.marker([32.221, 35.254]).addTo(map); // إحداثيات نابلس كمثال
+        marker.bindPopup("<b>مرحباً بك!</b><br>هذا موقع تجاري تجريبي على خريطتي.").openPopup();
+    </script>
 
 </body>
 </html>
