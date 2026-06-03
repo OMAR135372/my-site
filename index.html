@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خريطة جنين الذكية</title>
+    
+    <!-- مكتبة Leaflet الخاصة بالخرائط -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%;
+            width: 100%;
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            overflow: hidden;
         }
-        /* المساحة الإعلانية العلوية المقاسة 728x90 */
+        /* حاوية الإعلان العلوي المخصصة بمقاس 728x90 */
         #ad-container {
             width: 100%;
             background-color: #f0f0f0;
@@ -21,22 +28,23 @@
             justify-content: center;
             align-items: center;
             min-height: 90px;
-            border-bottom: 2px solid #ccc;
+            max-height: 90px;
+            border-bottom: 1px solid #ccc;
             overflow: hidden;
+            z-index: 1000;
         }
-        /* حاوية الخريطة لتأخذ باقي مساحة الشاشة */
-        #map-container {
+        /* حاوية الخريطة لتأخذ باقي مساحة الشاشة بالكامل */
+        #map {
             flex-grow: 1;
             width: 100%;
-            background-color: #e5e3df; /* لون مؤقت لحين عرض الخريطة */
+            height: 100%;
         }
     </style>
 </head>
 <body>
 
-    <!-- مساحة الإعلانات التلقائية العلوية -->
+    <!-- مساحة الإعلانات التلقائية العلوية الخاص بك -->
     <div id="ad-container">
-        <!-- كود إعلانات Adsterra الخاص بعمر -->
         <script type="text/javascript">
             atOptions = {
                 'key' : '7eb35a982dd43e667e5a58e89b40c625',
@@ -49,10 +57,23 @@
         <script type="text/javascript" src="https://www.highperformanceformat.com/7eb35a982dd43e667e5a58e89b40c625/invoke.js"></script>
     </div>
 
-    <!-- حاوية الخريطة الذكية الخاصة بك -->
-    <div id="map-container">
-        <!-- ضع هنا كود الخريطة أو الـ iFrame المستعمل لمشروعك -->
-    </div>
+    <!-- الخريطة التفاعلية الشغالة -->
+    <div id="map"></div>
+
+    <script>
+        // إعداد الخريطة وتوجيهها مباشرة إلى إحداثيات مركز مدينة جنين وبدرجة زووم مناسبة
+        var map = L.map('map').setView([32.4646, 35.2939], 14);
+
+        // تحميل مربعات الخريطة المفتوحة الشغالة 100% (OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // إضافة دبوس تثبيت (Marker) تفاعلي في وسط جنين
+        var marker = L.marker([32.4646, 35.2939]).addTo(map);
+        marker.bindPopup("<b>مرحباً بك في جنين!</b><br>خريطة جنين الذكية.").openPopup();
+    </script>
 
 </body>
 </html>
