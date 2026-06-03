@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشروع الخرائط العالمي</title>
     
-    <!-- روابط مكتبة Leaflet.js لتشغيل الخريطة -->
+    <title>خارطة فلسطين التفاعلية | دليل المحلات والأماكن التجارية</title>
+    <meta name="description" content="اكتشف خارطة العالم وفلسطين التفاعلية مجاناً. دليل كامل للبحث عن المحلات التجارية، المطاعم، والأماكن السياحية بديل جوجل ماب.">
+    <meta name="keywords" content="خارطة, خريطة, جوجل ماب, دليل تجاري, خرائط فلسطين, نابلس, الخليل, رام الله, أماكن سياحية">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -23,7 +25,6 @@
             padding: 20px;
             box-sizing: border-box;
         }
-
         .container {
             text-align: center;
             background-color: #1e293b;
@@ -34,54 +35,32 @@
             width: 100%;
             border: 1px solid #334155;
         }
-
-        h1 {
-            color: #38bdf8;
-            font-size: 2.2rem;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        #map {
-            height: 450px;
-            width: 100%;
-            border-radius: 12px;
-            border: 2px solid #38bdf8;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
-        }
+        h1 { color: #38bdf8; font-size: 2.2rem; margin-top: 0; margin-bottom: 10px; }
+        p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 20px; }
+        #map { height: 450px; width: 100%; border-radius: 12px; border: 2px solid #38bdf8; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>منصة الخرائط العالمية الخاصة بي</h1>
-        <p>موقع خرائط تفاعلي مجاني، جاهز للتطوير وإضافة المحلات والمواقع التجارية للربح منه.</p>
-        
-        <!-- الخريطة -->
+        <h1>خارطة فلسطين التفاعلية والدليل التجاري</h1>
+        <p>موقع خرائط مجاني مخصص للبحث عن المحلات، الفنادق، والمقاهي المحلية بكل سهولة.</p>
         <div id="map"></div>
     </div>
 
-    <!-- هذا السطر مخفي تماماً عن الزوار، وظيفته فقط إرسال الإحصائيات للوحتك السرية دون إظهار أي شيء بالموقع -->
     <div style="display: none;">
         <script type="text/javascript" src="https://counter10.optistats.ovh/private/counter.js?c=y1p27r3b9z7g7beunwaz7g81n1be3kfx&down=async" async></script>
     </div>
 
     <script>
         var map = L.map('map').setView([31.947, 35.227], 8);
-
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        var marker = L.marker([32.221, 35.254]).addTo(map); // إحداثيات نابلس كمثال
-        marker.bindPopup("<b>مرحباً بك!</b><br>هذا موقع تجاري تجريبي على خريطتي.").openPopup();
+        var marker = L.marker([32.221, 35.254]).addTo(map);
+        marker.bindPopup("<b>مرحباً بك في نابلس!</b><br>دليل المحلات التجارية هنا.").openPopup();
     </script>
 
 </body>
