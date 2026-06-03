@@ -3,86 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>خارطة جنين التفاعلية | دليل المحلات والأماكن</title>
-    <meta name="description" content="اكتشف خارطة جنين وفلسطين التفاعلية مجاناً. دليل كامل للبحث عن المحلات التجارية، المطاعم، والأماكن في جنين.">
-    <meta name="keywords" content="جنين, خارطة جنين, محلات جنين, دليل تجاري, خرائط فلسطين, إعلانات مجانية">
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
+    <title>خريطة جنين الذكية</title>
     <style>
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
+            height: 100vh;
+        }
+        /* المساحة الإعلانية العلوية المقاسة 728x90 */
+        #ad-container {
+            width: 100%;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .container {
-            text-align: center;
-            background-color: #1e293b;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            max-width: 900px;
-            width: 100%;
-            border: 1px solid #334155;
-        }
-        h1 { color: #38bdf8; font-size: 2.2rem; margin-top: 0; margin-bottom: 10px; }
-        p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 20px; }
-        
-        /* مكان ظهور الإعلانات التلقائية من الشركة */
-        .ad-container {
-            margin: 15px auto;
-            text-align: center;
             min-height: 90px;
-            width: 100%;
+            border-bottom: 2px solid #ccc;
+            overflow: hidden;
         }
-
-        #map { height: 450px; width: 100%; border-radius: 12px; border: 2px solid #38bdf8; }
+        /* حاوية الخريطة لتأخذ باقي مساحة الشاشة */
+        #map-container {
+            flex-grow: 1;
+            width: 100%;
+            background-color: #e5e3df; /* لون مؤقت لحين عرض الخريطة */
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>خارطة جنين التفاعلية والدليل التجاري</h1>
-        <p>موقع خرائط مجاني مخصص للبحث عن الأماكن والمحلات التجارية في مدينة جنين.</p>
-        
-        <div class="ad-container">
-            <div style="color: #64748b; font-size: 0.9rem; border: 1px dashed #334155; padding: 20px; border-radius: 8px;">مساحة إعلانية تلقائية (Adsterra Banner)</div>
-        </div>
-
-        <div id="map"></div>
+    <!-- مساحة الإعلانات التلقائية العلوية -->
+    <div id="ad-container">
+        <!-- كود إعلانات Adsterra الخاص بعمر -->
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '7eb35a982dd43e667e5a58e89b40c625',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/7eb35a982dd43e667e5a58e89b40c625/invoke.js"></script>
     </div>
 
-    <div style="display: none;">
-        <script type="text/javascript" src="https://counter10.optistats.ovh/private/counter.js?c=y1p27r3b9z7g7beunwaz7g81n1be3kfx&down=async" async></script>
+    <!-- حاوية الخريطة الذكية الخاصة بك -->
+    <div id="map-container">
+        <!-- ضع هنا كود الخريطة أو الـ iFrame المستعمل لمشروعك -->
     </div>
-
-    <script>
-        // ضبط الخريطة لتفتح مباشرة على إحداثيات مدينة جنين [32.464, 35.294] وبزووم قريب واضح (14)
-        var map = L.map('map', {
-            minZoom: 2,
-            maxZoom: 19
-        }).setView([32.464, 35.294], 14);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            noWrap: true, 
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
-
-        // إضافة دبوس فوق مركز جنين
-        var marker = L.marker([32.461, 35.297]).addTo(map);
-        marker.bindPopup("<b>مرحباً بك في جنين!</b><br>دليل المحلات والإعلانات التجارية يبدأ من هنا.").openPopup();
-    </script>
 
 </body>
 </html>
