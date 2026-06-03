@@ -53,14 +53,22 @@
     </div>
 
     <script>
-        var map = L.map('map').setView([31.947, 35.227], 8);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+        // 1. تشغيل الخريطة وتحديد مستوى زووم أدنى (minZoom: 2) لمنع التصغير المبالغ فيه
+var map = L.map('map', {
+    minZoom: 2,
+    maxZoom: 19
+}).setView([31.947, 35.227], 8);
 
-        var marker = L.marker([32.221, 35.254]).addTo(map);
-        marker.bindPopup("<b>مرحباً بك في نابلس!</b><br>دليل المحلات التجارية هنا.").openPopup();
+// 2. استدعاء الخريطة مع تفعيل أمر (noWrap: true) لمنع تكرار العالم بجانب بعضه
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    noWrap: true, // يمنع تكرار الخريطة أفقياً
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// 3. إضافة علامة الدبوس
+var marker = L.marker([32.221, 35.254]).addTo(map);
+marker.bindPopup("<b>مرحباً بك في نابلس!</b><br>دليل المحلات التجارية هنا.").openPopup();
     </script>
 
 </body>
